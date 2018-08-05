@@ -1,0 +1,98 @@
+#!/bin/zsh 
+
+# Stolen from: https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
+POSITIONAL=()
+AG_PARAM=()
+SEARCH_PLACES=()
+NVIM_PARAM=()
+JUST_FILES=0
+CAT_FILES=0
+
+while [[ $# -gt 0 ]]; do
+	key="$1"
+
+	case $key in
+		-g)
+            AG_PARAM+=("$2")
+			shift # past argument
+			shift # past value
+		;;
+		-sp)
+            SEARCH_PLACES+=("$2")
+			shift # past argument
+			shift # past value
+		;;
+		-v)
+            NVIM_PARAM+=("$2")
+			shift # past argument
+			shift # past value
+		;;
+        -s)
+            SEARCH_VAL="$2"
+			shift # past argument
+			shift # past value
+        ;;  
+        -f)
+            JUST_FILES=1
+			shift # past argument
+        ;;  
+        -nf)
+            JUST_FILES=2
+			shift # past argument
+        ;;  
+        -l)
+            JUST_FILES=3
+			shift # past argument
+        ;;  
+        -c)
+            CAT_FILES=1
+			shift # past argument
+        ;;  
+        -p)
+            CAT_FILES=2
+			shift # past argument
+        ;;  
+        --help)
+            echo "====== HELP ======"
+            echo "PARA | DESC"
+            echo "-g   : Ag param"
+            echo "-v   : Nvim param"
+            echo "-sp  : File or directory to search. Prefer over just using -g"
+            echo "-s   : Search val"
+            echo "-f   : Edit just the file names, not the content"
+            echo "-nf  : No editing"
+            echo "-l   : Edit lines"
+            echo "-c   : Echo out file names at the end"
+            echo "-p   : Pastebin file names at the end"
+            exit
+        ;;
+		*) # unknown option
+			POSITIONAL+=("$1") # save it in an array for later
+			printf "Ignoring option \`$1\`\n"
+			shift # past argument
+		;;
+	esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+FILES="$(ag  "${AG_PARAM[@]}" -- "$SEARCH_VAL" "${SEARCH_PLACES[@]}")"
+
+if [ "${#SEARCH_PLACES[@]}" -eq "1" ] && [ -f "${SEARCH_PLACES[1]}" ]; then
+    FILES="$(printf "%s\n" "$FILES" | sed "s/^/$(printf "%s\n" ${SEARCH_PLACES[1]} | sed "s/\//\\\AAA\//g" | sed "s/AAA//g"):/")"
+fi
+
+if [ $JUST_FILES -eq 0 ]; then
+    nvim -s <(printf "%s\n" "/$SEARCH_VAL") \
+        "${NVIM_PARAM[@]}" \
+        $(cut -d":" -f1 <<<"$FILES")
+elif [ $JUST_FILES -eq 1 ]; then
+    nvim <(cut -d":" -f1-2 <<<"$FILES")
+elif [ $JUST_FILES -eq 3 ]; then
+    nvim <(<<<${FILES})
+fi
+
+if [ $CAT_FILES -eq 1 ]; then
+    cat <(<<<${FILES})
+elif [ $CAT_FILES -eq 2 ]; then
+    cat <(<<<${FILES}) | pastebinit
+fi

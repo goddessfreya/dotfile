@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+cd "$1"
+URL="$2"
+
+DATE=$(date +%s)
+mkdir $DATE 
+cd $DATE 
+
+rsync -chavzPAR --stats \
+    -e 'ssh -X' \
+    --rsync-path='SUDO_ASKPASS=/usr/bin/ssh-askpass sudo rsync' \
+    --exclude="var/cache/apt" \
+    "$URL":/./etc/. \
+    "$URL":/./var/. \
+    "$URL":/./home/. \
+    "$URL":/./root/. \
+    "$URL":/./opt/. \
+    "$URL":/./srv/. \
+    "$URL":/./usr/local/. \
+    .

@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+PID_LIST=
+findpids_inner() {
+    for pid in /proc/$1/task/* ; do
+            pid="$(basename "$pid")"
+            [[ "$pid" == "*" ]] && continue
+
+            PID_LIST="$PID_LIST$pid "
+            for cpid in $(cat /proc/$1/task/$pid/children) ; do
+                    findpids_inner $cpid
+            done
+    done
+}
+
+for p in $(pgrep $1 | tr "\n" " "); do
+    findpids_inner "$p"
+    echo $PID_LIST
+done

@@ -27,6 +27,7 @@
 !confs
 !confs/**
 
+!.config/i3
 !.config/redshift.conf
 !.zfunc
 !.zfunc/**
@@ -35,8 +36,12 @@
 !killwine
 !latinlinks
 !.config/i3/config
+!.config/xfce4
+!.config/xfce4/terminal
 !.config/xfce4/terminal/terminalrc
 !.xinitrc
-!.xmodmap
+!.Xmodmap
 !.conkyrc
 !hide-and-play.ogg
+
+!update_confs

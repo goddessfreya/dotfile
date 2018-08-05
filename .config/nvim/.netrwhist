@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/gentz/.local/share/Steam/steamapps/common/Democracy 3/LGBTQRights/data/simulation'
+let g:netrw_dirhist_2='/home/gentz/.local/share/Steam/steamapps/common/Democracy 3/LGBTQRights/data/simulation/dilemmas'
+let g:netrw_dirhist_3='/home/gentz/.local/share/Steam/steamapps/common/Democracy 3/LGBTQRights/data/simulation'
+let g:netrw_dirhist_4='/home/gentz/.local/share/Steam/steamapps/common/Democracy 3'
+let g:netrw_dirhist_5='/home/gentz/.local/share/Steam/steamapps/common/Democracy 3/2'
+let g:netrw_dirhist_6='/home/gentz/.local/share/Steam/steamapps/common/Democracy 3/2/data'
+let g:netrw_dirhist_7='/home/gentz/.local/share/Steam/steamapps/common/Democracy 3/2'
+let g:netrw_dirhist_8='/home/gentz/.local/share/Steam/steamapps/common/Democracy 3'
+let g:netrw_dirhist_9='/home/gentz/Documents/ravenslofty/dechunkd/test00.rbf'

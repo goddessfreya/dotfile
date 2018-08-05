@@ -1,0 +1,33 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/mapper/LinuxGentzLVM-root
+UUID=e1c80258-5bd4-455d-8b9a-8dfe60047e38	/         	                    ext4      	rw,noatime,data=writeback,commit=100	                        0 1
+
+# /dev/mapper/LinuxGentzLVM-var
+UUID=f50680d1-4c51-4f45-a1e6-76aefbd736a1	/var      	                    ext4      	rw,noatime,data=writeback,nodev,nosuid,noexec,commit=100	    0 2
+
+# /dev/mapper/LinuxGentzLVM-home
+UUID=84c64ab3-cb0b-4959-8ca4-cdd60a3c7577	/home     	                    ext4      	rw,noatime,data=writeback,nodev,nosuid,commit=100	            0 2
+
+# /dev/mapper/cryptboot
+UUID=c8338b5a-5f35-446a-b9b4-1970ec04f2cd	/boot     	                    ext4      	rw,noatime,stripe=4,data=ordered,nodev,nosuid,noexec	        0 2
+
+# /dev/sda1
+UUID=A5F0-6B01      	                    /boot/efi 	                    vfat      	rw,noatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# swap
+/dev/mapper/cryptswap		                none		                    swap      	defaults											            0 0
+
+# /tmp
+tmpfs						                /tmp		                    tmpfs		rw,relatime,nodev,nosuid,size=60G				            	0 0
+
+# /dev/shm
+none						                /dev/shm                        tmpfs   	rw,relatime,nodev,nosuid,noexec,size=5G				            0 0
+
+# /proc
+proc						                /proc		                    proc		nosuid,nodev,noexec,hidepid=2,gid=proc				            0 0
+
+/home/opt                                   /opt                            none        bind                                                            0 3
+/home/pkg                                   /var/cache/pacman/pkg           none        bind                                                            0 3

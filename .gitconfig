@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Hal Gentz
+	email = zegentzy@protonmail.com
+	signingkey = FFA703792A952E2E
+[commit]
+	gpgsign = true
+[alias]
+	tree = log --graph --decorate --pretty=oneline --abbrev-commit
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+# dunno why I need to wrap it, but I do for it to work
+# /me sighs
+zsh ~/utils/beep_internals/_beeper-kill

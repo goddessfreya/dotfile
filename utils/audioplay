@@ -1,0 +1,2 @@
+#!/bin/zsh
+paplay ~/utils/hide-and-seek.ogg --volume 52428

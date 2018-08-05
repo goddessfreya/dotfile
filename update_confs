@@ -1,0 +1,3 @@
+#/bin/zsh -x
+
+find confs -type f | sed "s/^confs//" | sudo xargs -I % cp % ./confs%
