@@ -67,8 +67,12 @@ while [[ $# -gt 0 ]]; do
             exit
         ;;
 		*) # unknown option
-			POSITIONAL+=("$1") # save it in an array for later
-			printf "Ignoring option \`$1\`\n"
+            if [[ -f "$1" || -d "$1" ]]; then
+                SEARCH_PLACES+=("$1")
+            else
+                POSITIONAL+=("$1") # save it in an array for later
+                printf "Ignoring option \`$1\`\n"
+            fi
 			shift # past argument
 		;;
 	esac
@@ -77,22 +81,31 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 FILES="$(ag  "${AG_PARAM[@]}" -- "$SEARCH_VAL" "${SEARCH_PLACES[@]}")"
 
-if [ "${#SEARCH_PLACES[@]}" -eq "1" ] && [ -f "${SEARCH_PLACES[1]}" ]; then
-    FILES="$(printf "%s\n" "$FILES" | sed "s/^/$(printf "%s\n" ${SEARCH_PLACES[1]} | sed "s/\//\\\AAA\//g" | sed "s/AAA//g"):/")"
+if [[ "${#SEARCH_PLACES[@]}" -eq "1"  &&  -f "${SEARCH_PLACES[1]}" ]]; then
+    FILES="$(printf "%s\n" "$FILES" \
+        | sed "s/^/$(printf "%s\n" ${SEARCH_PLACES[1]} \
+        | sed "s/\//\\\AAA\//g" | sed "s/AAA//g"):/")"
 fi
 
-if [ $JUST_FILES -eq 0 ]; then
-    nvim -s <(printf "%s\n" "/$SEARCH_VAL") \
-        "${NVIM_PARAM[@]}" \
-        $(cut -d":" -f1 <<<"$FILES")
-elif [ $JUST_FILES -eq 1 ]; then
-    nvim <(cut -d":" -f1-2 <<<"$FILES")
-elif [ $JUST_FILES -eq 3 ]; then
-    nvim <(<<<${FILES})
-fi
+case $JUST_FILES in
+	0)
+        nvim -s <(printf "%s\n" "/$SEARCH_VAL") \
+            "${NVIM_PARAM[@]}" \
+            $(cut -d":" -f1 <<<"$FILES")
+    ;;
+	1)
+        nvim <(cut -d":" -f1-2 <<<"$FILES")
+    ;;
+	3)
+        nvim <(<<<${FILES})
+    ;;
+esac
 
-if [ $CAT_FILES -eq 1 ]; then
-    cat <(<<<${FILES})
-elif [ $CAT_FILES -eq 2 ]; then
-    cat <(<<<${FILES}) | pastebinit
-fi
+case $CAT_FILES in
+    1)
+        cat <(<<<${FILES})
+    ;;
+    2)
+        cat <(<<<${FILES}) | pastebinit
+    ;;
+esac
