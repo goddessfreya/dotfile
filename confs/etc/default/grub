@@ -5,7 +5,10 @@ GRUB_TIMEOUT=10
 GRUB_DISTRIBUTOR="Arch"
 GRUB_CMDLINE_LINUX_DEFAULT=""
 GRUB_CMDLINE_LINUX=" \
-    rd.luks.name=5b31057b-c3e9-45f7-88ad-a4aabbcfecea=cryptlvm root=/dev/LinuxGentzLVM/root \
+    rd.luks.name=5b31057b-c3e9-45f7-88ad-a4aabbcfecea=cryptlvm \
+    rd.luks.name=80b5bd10-4a6e-4bdb-a22c-b7b880ccae54=cryptswap \
+    rd.luks.key=80b5bd10-4a6e-4bdb-a22c-b7b880ccae54=cryptswap=/etc/swappass:UUID=f50680d1-4c51-4f45-a1e6-76aefbd736a1 \
+    root=/dev/LinuxGentzLVM/root \
     rd.luks.options=timeout=300 rootflags=x-systemd.device-timeout=300 \
     radeon.si_support=0 radeon.cik_support=0 amdgpu.si_support=1 amdgpu.cik_support=1 amdgpu.dc=0 \
     zswap.enabled=1 zswap.compressor=lz4 zswap.max_pool_percent=80 zswap.zpool=z3fold \

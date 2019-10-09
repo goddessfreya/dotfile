@@ -12,4 +12,4 @@
 # vol          /dev/sdb7                                    none
 
 cryptboot		/dev/sda2									/etc/bootkey.txt
-cryptswap		LABEL=cryptswap					/dev/urandom				swap,offset=2048,cipher=serpent
+#cryptswap		LABEL=cryptswap					/dev/urandom				swap,offset=2048,cipher=serpent

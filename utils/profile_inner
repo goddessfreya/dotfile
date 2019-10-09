@@ -1,0 +1,32 @@
+#!/bin/zsh -x
+
+# set type of start to float to increase precision
+typeset -F start 
+
+# Profile prompt times.
+gentz_number=0
+gentz_number_target=5
+gentz_number_target2=20
+
+# define precmd hook function
+precmd () {
+    # save time since start of zsh in start
+    start=$SECONDS
+    gentz_number=$(( gentz_number + 1 ))
+    [[ $gentz_number -eq $(( $gentz_number_target + 1 )) ]] && zmodload zsh/zprof
+}
+
+# define zle-line-init function
+zle-line-init () {
+    # print time since start was set after prompt
+    PREDISPLAY="[$(( $SECONDS - $start ))] "
+    [[ $gentz_number -gt $gentz_number_target2 ]] \
+        && zprof && echo "Yes now. $(( $gentz_number - $gentz_number_target ))" \
+        || { 
+            echo "Not now. $(( $gentz_number_target2 - $gentz_number + 1 ))"
+            echo "Very not now. $(( $gentz_number_target - $gentz_number + 1 ))"
+        }
+}
+
+# link the zle-line-init widget to the function of the same name
+zle -N zle-line-init

@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+prompt_ssh_add() {
+    read -q "REPLY?Do $1? "
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        ssh-add "$1"
+    fi
+}
+
+prompt_ssh_add ~/.ssh/id_ed25519_digital 
+prompt_ssh_add ~/.ssh/id_ed25519_github 
+prompt_ssh_add ~/.ssh/id_ed25519_mesa

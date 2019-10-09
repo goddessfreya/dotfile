@@ -30,6 +30,7 @@ if dein#load_state('~/.config/nvim/dein')
 	call dein#add('mattn/webapi-vim')
 	call dein#add('ervandew/supertab')
     call dein#add('powerman/vim-plugin-AnsiEsc')
+    call dein#add('lervag/vimtex')
 
 	call dein#end()
 
@@ -255,3 +256,9 @@ noremap <C-W>j <C-W>h
 noremap <C-W>k <C-W>j
 noremap <C-W>l <C-W>k
 noremap <C-W>; <C-W>l
+
+" Mupdf
+let g:vimtex_view_method = 'mupdf'
+let g:tex_flavor = 'latex'
+let g:matchup_matchparen_deferred = 1
+let g:vimtex_view_use_temp_files = 1

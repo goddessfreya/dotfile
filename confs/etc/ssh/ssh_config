@@ -21,6 +21,10 @@ Host 2048.run
 	PasswordAuthentication yes
     PubkeyAuthentication no
 
+Host 192.168.1.25
+	PasswordAuthentication yes
+    PubkeyAuthentication no
+
 Host watchcdda.us
 #	PasswordAuthentication yes
 #   PubkeyAuthentication no
@@ -43,6 +47,9 @@ Host github.com
 
 Host gitlab.freedesktop.org
     IdentityFile ~/.ssh/id_ed25519_mesa
+
+Host gitlab.com
+    IdentityFile ~/.ssh/id_ed25519_gitlab
 
 Host *
 #   ForwardAgent no

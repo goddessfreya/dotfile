@@ -21,10 +21,10 @@ UUID=A5F0-6B01      	                    /boot/efi 	                    vfat    
 /dev/mapper/cryptswap		                none		                    swap      	defaults											            0 0
 
 # /tmp
-tmpfs						                /tmp		                    tmpfs		rw,relatime,nodev,nosuid,size=60G				            	0 0
+tmpfs						                /tmp		                    tmpfs		rw,noatime,nodev,nosuid,size=60G				            	0 0
 
 # /dev/shm
-none						                /dev/shm                        tmpfs   	rw,relatime,nodev,nosuid,noexec,size=5G				            0 0
+none						                /dev/shm                        tmpfs   	rw,noatime,nodev,nosuid,noexec,size=5G				            0 0
 
 # /proc
 proc						                /proc		                    proc		nosuid,nodev,noexec,hidepid=2,gid=proc				            0 0

@@ -1,5 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/gentz/.local/share/0ad/mods/autocivold/autociv_data'
-let g:netrw_dirhist_2='/home/gentz/.local/share/0ad/mods/gentz-autociv'
-let g:netrw_dirhist_3='/home/gentz/.local/share/0ad/mods/autocivold/autociv_data'
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/gentz'

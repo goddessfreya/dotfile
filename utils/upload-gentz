@@ -1,0 +1,8 @@
+#!/bin/zsh -x
+
+local TARGETDIR="files/$(date +%s)"
+local FOLDERDIR="/usr/share/wordpress/$TARGETDIR"
+
+ssh gentz@gentz.rocks "mkdir -p $FOLDERDIR" || exit $?
+scp -r "$1" "gentz@gentz.rocks:$FOLDERDIR" || exit $?
+echo "https://gentz.rocks/$TARGETDIR/$(basename $1)"
