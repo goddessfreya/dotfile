@@ -1,8 +1,16 @@
-#!/bin/zsh -x
+#!/bin/zsh
 
 local TARGETDIR="files/$(date +%s)"
 local FOLDERDIR="/usr/share/wordpress/$TARGETDIR"
 
+ssh-add ~/.ssh/id_ed25519_digital
+
 ssh gentz@gentz.rocks "mkdir -p $FOLDERDIR" || exit $?
-scp -r "$1" "gentz@gentz.rocks:$FOLDERDIR" || exit $?
-echo "https://gentz.rocks/$TARGETDIR/$(basename $1)"
+
+for FILE in "$@"; do
+    scp -r "$FILE" "gentz@gentz.rocks:$FOLDERDIR" || exit $?
+done
+
+for FILE in "$@"; do
+    echo "https://gentz.rocks/$TARGETDIR/$(basename "$FILE")"
+done

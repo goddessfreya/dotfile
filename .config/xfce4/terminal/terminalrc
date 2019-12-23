@@ -35,4 +35,9 @@ ScrollingUnlimited=TRUE
 ScrollingOnOutput=FALSE
 ColorBackgroundVary=TRUE
 BackgroundDarkness=1.000000
+MiscSearchDialogOpacity=100
+MiscShowUnsafePasteDialog=TRUE
+ShortcutsNoHelpkey=TRUE
+ShortcutsNoMenukey=TRUE
+ShortcutsNoMnemonics=TRUE
 

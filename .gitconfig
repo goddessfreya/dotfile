@@ -1,9 +1,9 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-	name = Hal Gentz
+	name = Freya Gentz
 	email = zegentzy@protonmail.com
-	signingkey = FFA703792A952E2E
+	signingkey = DA18D21C030A482DB0FF2D3B9E15D69E28E7F48C
 [commit]
 	gpgsign = true
 [alias]

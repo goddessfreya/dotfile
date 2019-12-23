@@ -1,8 +1,0 @@
-#!/bin/zsh
-
-sudo pkill -9 beep
-sleep 1
-beep
-
-LOCKDIR="$HOME/utils/beep_internals/rlock"
-rm -rf "$LOCKDIR" >/dev/null 2>&1

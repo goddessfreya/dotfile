@@ -210,6 +210,7 @@ function! s:Debug(message) abort
         silent execute '!echo '.a:message.' '.bufnr("%").' >> debug'
 endfunction
 
+autocmd BufRead,BufNewFile *.lalrpop setfiletype rust
 autocmd FileType rust,c,cpp,h,hpp,py,vim,javascript,xml,html,txt,glsl*,lua autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
 
 let g:indent_guides_enable_on_vim_startup = 1

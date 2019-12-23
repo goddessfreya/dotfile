@@ -1,3 +1,0 @@
-#!/bin/zsh
-
-~/utils/beep_internals/_beeper &

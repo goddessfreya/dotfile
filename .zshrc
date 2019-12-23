@@ -17,6 +17,7 @@ export TERMINAL='xfce4-terminal'
 export BROWSER='firefox-nightly'
 export DEFAULT_USER=gentz
 export CARGO_INCREMENTAL=1
+export DISTCC_DIR=/tmp/distcc
 
 case $0 in
 *zsh)

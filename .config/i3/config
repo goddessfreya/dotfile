@@ -39,7 +39,8 @@ bindsym $mod+p exec xfce4-screenshooter
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show run
+bindsym $mod+c exec rofi -show window
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -175,6 +176,8 @@ client.urgent           #7c6f64 #fabd2f #3c3836 #fabd2f
 # $i3-background
 exec_always --no-startup-id xsetroot -solid '#3c3836'
 
+# Sleep
+exec_always --no-startup-id bash -c "$HOME/utils/lock_setup"
 
 bar {
     status_command $HOME/utils/conky-i3bar

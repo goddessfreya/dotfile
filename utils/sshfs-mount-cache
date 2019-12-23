@@ -1,0 +1,17 @@
+#!/bin/zsh -x
+
+mkdir -p /var/cache/pacman/pkg.old || exit $?
+if [[ "$(ls -A /var/cache/pacman/pkg)" ]]; then
+    mv /var/cache/pacman/pkg/* /var/cache/pacman/pkg.old || exit $?
+fi
+modprobe fuse
+sshfs pacmansync@$1:/var/cache/pacman/pkg /var/cache/pacman/pkg -C -d -o allow_other -o default_permissions &
+PREV_PID=$!
+{
+    if [[ "$(ls -A /var/cache/pacman/pkg.old)" ]]; then
+        cp --no-preserve=mode /var/cache/pacman/pkg.old/* /var/cache/pacman/pkg 
+        rm /var/cache/pacman/pkg.old/*
+    fi
+    rmdir /var/cache/pacman/pkg.old
+} &
+wait $PREV_PID

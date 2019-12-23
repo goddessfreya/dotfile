@@ -1,0 +1,10 @@
+#!/bin/zsh -x
+
+rm /tmp/screenshot.png
+scrot /tmp/screenshot.png
+convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
+if [[ "$WAYLAND_DISPLAY" == "" ]]; then
+    i3lock -i /tmp/screenshotblur.png
+else
+    swaylock -f -i /tmp/screenshotblur.png
+fi

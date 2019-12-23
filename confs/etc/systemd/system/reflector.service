@@ -1,0 +1,11 @@
+[Unit]
+Description=Pacman mirrorlist update
+Wants=network.target nss-lookup.target network-online.target
+After=network.target nss-lookup.target network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/reflector --latest 200 --protocol http --protocol https --protocol ftp --protocol rsync --number 50 --sort rate --save /etc/pacman.d/mirrorlist
+
+[Install]
+RequiredBy=multi-user.target
