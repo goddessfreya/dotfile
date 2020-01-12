@@ -1,10 +1,16 @@
 #!/bin/zsh -x
 
-rm /tmp/screenshot.png
-scrot /tmp/screenshot.png
-convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
 if [[ "$WAYLAND_DISPLAY" == "" ]]; then
+    ffmpeg -y -f x11grab -video_size 3840x1080 \
+        -i $DISPLAY \
+        -i ~/utils/lock_overlay.png \
+        -i ~/utils/lock_overlay.png \
+        -filter_complex "boxblur=5:1,overlay=((main_w/4)-(overlay_w/2)):((main_h-overlay_h)/2),overlay=((main_w/4*3)-(overlay_w/2)):((main_h-overlay_h)/2)" \
+        -vframes 1  /tmp/screenshotblur.png
     i3lock -i /tmp/screenshotblur.png
 else
-    swaylock -f -i /tmp/screenshotblur.png
+    rm /tmp/screenshot.png
+    grim /tmp/screenshot.png
+    convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
+    swaylock -f -i /tmp/screenshotblur.png -t
 fi

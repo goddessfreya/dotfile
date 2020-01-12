@@ -1,12 +1,12 @@
 #!/bin/zsh
 
 if [[ "$WAYLAND_DISPLAY" == "" ]]; then
-    xset dpms 600
-    xautolock -time 10 -locker "$HOME/utils/lock"
+    xset dpms 2400 3000 3400
+    xautolock -time 40 -locker "$HOME/utils/lock"
 else
     swayidle -w \
-        timeout 600 '$HOME/utils/lock' \
-        timeout 600 'swaymsg "output * dpms off"' \
+        timeout 2400 '$HOME/utils/lock' \
+        timeout 2400 'swaymsg "output * dpms off"' \
             resume 'swaymsg "output * dpms on"' \
         before-sleep '$HOME/utils/lock'
 fi
