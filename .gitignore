@@ -46,3 +46,6 @@
 
 !update_confs
 !vlc-discord-rpc
+
+!zshinstall
+!zshinstall/**
