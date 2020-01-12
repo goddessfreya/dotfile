@@ -1,9 +1,12 @@
 [submodule "zshinstall/oh-my-zsh"]
 	path = zshinstall/oh-my-zsh
     url = https://github.com/ohmyzsh/ohmyzsh.git
-	shallow = true
+	branch = master
 [submodule "zshinstall/powerlevel9k"]
 	path = zshinstall/powerlevel9k
-	url = https://github.com/Powerlevel9k/powerlevel9k.git
+    url = https://github.com/Powerlevel9k/powerlevel9k.git
 	branch = next
-	shallow = true
+[submodule "zshinstall/zsh-autosuggestions"]
+	path = zshinstall/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+	branch = master

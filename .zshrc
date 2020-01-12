@@ -27,7 +27,12 @@ case $0 in
 	ZSH=$HOME/zshinstall/oh-my-zsh
 
 	P9K_MODE='nerdfont-complete'
-    ZSH_THEME="powerlevel9k/powerlevel9k"
+    ZSH_THEME="../../powerlevel9k/powerlevel9k"
+
+    ln -sf \
+        $HOME/zshinstall/zsh-autosuggestions \
+        $HOME/zshinstall/oh-my-zsh/custom/plugins/zsh-autosuggestions 
+
     plugins=(zsh-autosuggestions)
 
 	# Uncomment the following line to use case-sensitive completion.
